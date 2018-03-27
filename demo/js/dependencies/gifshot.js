@@ -1782,10 +1782,8 @@ AnimatedGIF.prototype = {
         this.generatingGIF = false;
 
         if (utils.isFunction(callback)) {
-            bufferToString = this.bufferToString(buffer);
-            gif = 'data:image/gif;base64,' + utils.btoa(bufferToString);
-
-            callback(gif);
+            var blob = new Blob([new Uint8Array(buffer)], { type: 'image/gif' });
+            callback(blob);
         }
     },
     // From GIF: 0 = loop forever, null = not looping, n > 0 = loop n times and stop
@@ -2800,7 +2798,7 @@ var API = {
   'isWebCamGIFSupported': isWebCamGIFSupported,
   'isExistingVideoGIFSupported': isExistingVideoGIFSupported,
   'isExistingImagesGIFSupported': isSupported$1,
-  'VERSION': '0.4.4'
+  'VERSION': '0.4.5'
 };
 
 /*
